@@ -1,0 +1,9 @@
+coverage
+/node_modules
+/dist
+/app/*
+/app/controller/home.js
+/app/controller/user.js
+/app/service/home.js
+/app/service/user.js
+/config/config.default.js

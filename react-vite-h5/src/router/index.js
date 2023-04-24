@@ -4,6 +4,7 @@
 import Data from '@/container/Data';
 import Home from '@/container/Home';
 import User from '@/container/User';
+import Login from '@/container/Login';
 const routes = [
   {
     path: '/',
@@ -20,6 +21,10 @@ const routes = [
   {
     path: '/user',
     component: User
+  },
+  {
+    path: '/Login',
+    component: Login
   }
 ];
 

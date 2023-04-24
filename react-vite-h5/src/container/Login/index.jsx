@@ -2,6 +2,7 @@ import CustomIcon from '@/components/CustomIcon';
 import React, { useCallback, useState, useRef } from 'react';
 import { Cell, Checkbox, Input, Button, Toast } from 'zarm';
 import Captcha from 'react-captcha-code';
+import { post } from '@/utils';
 import s from './style.module.less';
 
 const Login = () => {
@@ -46,7 +47,7 @@ const Login = () => {
                     Toast.show('验证码错误');
                     return ;
                 };
-                const { data } = await post('/api/user/register', {
+                const { data } = await axios.post('/api/user/register', {
                     username, 
                     password
                 });

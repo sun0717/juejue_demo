@@ -1,6 +1,6 @@
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import { defineConfig } from 'vite';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
@@ -8,11 +8,9 @@ export default defineConfig({
     proxy: {
       '/api': {
         // 当遇到 /api 路径时，将其转换为 target 的值
-        target: 'http://localhost:5173',
+        target: 'http://127.0.0.1:7001',
         changeOrigin: true,
-        pathRewrite: {
-          '^/api':''
-        }
+        rewrite: (path) => path.replace(/^\/api/, ''),
       }
     }
   },

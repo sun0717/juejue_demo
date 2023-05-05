@@ -1,15 +1,18 @@
 import React, { useEffect, useState, useRef } from 'react';
 import BillItem from '@/components/BillItem';
+import CustomIcon from '@/components/CustomIcon';
 import { Icon, Pull } from 'zarm';
 import dayjs from 'dayjs';
 import { get, REFRESH_STATE, LOAD_STATE } from "@/utils"; // Pull 组件需要的一些常量
 import PopupType from '@/components/PopupType';
+import PopupAddBill from '@/components/PopupAddBill';
 import s from './style.module.less';
 import PopupDate from '@/components/PopupDate';
 
 // 列表页编写
 const Home = () => {
     const typeRef = useRef(); // 账单类型 ref
+    const addRef = useRef(); // 添加账单 ref
     const [currentTime, setCurrentTime] = useState(dayjs().format('YYYY-MM')); // 当前筛选时间
     const [page, setPage] = useState(1); // 筛选分页数据
     const [list, setList] = useState([]); // 账单列表
@@ -81,6 +84,11 @@ const Home = () => {
         setCurrentTime(item);
     }
 
+    // 点击新增按钮，调出弹窗的功能
+    const addToggle = () => {
+        addRef.current && addRef.current.show();
+    }
+
     return <div className={s.home}>
         <div className={s.header}>
             <div className={s.dataWrap}>
@@ -122,6 +130,8 @@ const Home = () => {
         </div>
         <PopupType ref={typeRef} onSelect={select} />
         <PopupDate ref={monthRef} mode='month' onSelect={selectMonth}></PopupDate>
+        <div className={s.add} onClick={addToggle}><CustomIcon type='tianjia' /></div>
+        <PopupAddBill ref={addRef}/>
     </div>
 }
 
